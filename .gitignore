@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Google Cloud
+service-account.json
+*.json
+
+# IDE
+.vscode/
+.idea/
+.qodo/
+
+# OS
+.DS_Store

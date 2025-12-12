@@ -1,129 +1,175 @@
 :root {
-    --bg-color: #f8f9fa;
+    --bg-color: #f0f2f5;
     --card-bg: #ffffff;
     --card-border: #dadce0;
     --primary: #1a73e8;
+    --primary-hover: #1558b0;
     --text-main: #202124;
     --text-light: #5f6368;
     --hover-bg: #f1f3f4;
+    --shadow-sm: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 8px;
+    --font-heading: 'Google Sans', 'Roboto', sans-serif;
+    --font-body: 'Roboto', 'Open Sans', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #202124;
+        --card-bg: #303134;
+        --card-border: #5f6368;
+        --primary: #8ab4f8;
+        --primary-hover: #aecbfa;
+        --text-main: #e8eaed;
+        --text-light: #bdc1c6;
+        --hover-bg: #3c4043;
+    }
 }
 
 * {
     box-sizing: border-box;
-    font-family: 'Roboto', 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background: var(--bg-color);
     color: var(--text-main);
+    font-family: var(--font-body);
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem;
     min-height: 100vh;
+    line-height: 1.5;
 }
 
 .main-wrapper {
     width: 100%;
     max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
+/* Header */
 header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--card-border);
+    padding: 0.5rem 0;
 }
 
-header h1 {
-    font-size: 1.4rem;
-    color: var(--text-light);
+.logo-area {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.instructions-card {
-    background: #e8f0fe;
-    color: #174ea6;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-}
-
-/* Google Translate Style Container */
-.google-translate-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 12px;
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.logo-area svg {
+    stroke: var(--text-light);
+}
+
+/* Google Translate Container */
+.google-translate-container {
+    display: flex;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    min-height: 250px;
+    flex-direction: row;
     overflow: hidden;
 }
 
+/* Mobile & Tablet Styles */
 @media (max-width: 768px) {
     .google-translate-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        border-radius: var(--radius) var(--radius) 0 0; /* Stacked look */
+    }
+    
+    .source-box {
+        border-right: none;
+        border-bottom: 1px solid var(--card-border);
+    }
+
+    body {
+        padding: 0.5rem;
+    }
+    
+    .logo-area {
+        font-size: 1.1rem;
     }
 }
 
 .translate-box {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    min-height: 300px;
     position: relative;
+    padding-bottom: 3rem; /* Space for controls */
 }
 
 .source-box {
     border-right: 1px solid var(--card-border);
 }
 
+/* Header inside boxes (Language Select) */
 .box-header {
     display: flex;
     align-items: center;
-    padding: 10px 16px;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--card-border);
-    gap: 1rem;
+    gap: 0.5rem;
+    background: var(--card-bg);
 }
 
 select {
     border: none;
     background: transparent;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.875rem;
+    font-weight: 600;
     color: var(--primary);
     cursor: pointer;
     outline: none;
-}
-
-select:hover {
-    background: var(--hover-bg);
+    padding: 0.5rem;
     border-radius: 4px;
+    font-family: var(--font-heading);
+    transition: background 0.2s;
+    max-width: 100%;
 }
 
+select:hover, select:focus {
+    background: var(--hover-bg);
+}
+
+/* Translate Button */
 #translate-btn-main {
     margin-left: auto;
     background: var(--primary);
-    color: white;
+    color: white; /* In dark mode this stays white ideally, or follows card-bg if needed, but primary bg is blue so white text is good */ 
     border: none;
-    padding: 6px 16px;
+    padding: 0.5rem 1.5rem;
     border-radius: 4px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
+    font-family: var(--font-heading);
+    transition: background 0.2s, box-shadow 0.2s;
 }
 
 #translate-btn-main:hover {
-    background: #1765cc;
+    background: var(--primary-hover);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
+/* Content Area */
 .box-content {
     flex: 1;
-    padding: 16px;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
 }
@@ -134,9 +180,16 @@ textarea {
     border: none;
     resize: none;
     font-size: 1.5rem;
+    font-family: var(--font-body);
     color: var(--text-main);
     background: transparent;
     outline: none;
+    min-height: 120px;
+}
+
+textarea::placeholder {
+    color: var(--text-light);
+    opacity: 0.7;
 }
 
 .output-text {
@@ -144,14 +197,16 @@ textarea {
     font-size: 1.5rem;
     color: var(--text-main);
     white-space: pre-wrap;
-    min-height: 150px;
+    min-height: 120px;
 }
 
+/* Controls (Speaker, Copy) */
 .box-controls {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 1rem;
     display: flex;
-    gap: 8px;
-    margin-top: auto;
-    padding-top: 10px;
+    gap: 0.5rem;
 }
 
 .icon-btn {
@@ -165,7 +220,7 @@ textarea {
     justify-content: center;
     cursor: pointer;
     color: var(--text-light);
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 
 .icon-btn:hover {
@@ -175,15 +230,96 @@ textarea {
 
 .icon-btn svg {
     fill: currentColor;
+    width: 20px;
+    height: 20px;
 }
-/* TTS Studio Styles */
-.card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-.card h2 { font-size: 1.1rem; color: var(--text-light); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
-.action-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: background 0.2s; }
-.action-btn:hover { background: #1765cc; }
-.action-btn.secondary { background: white; color: var(--primary); border: 1px solid var(--card-border); }
-.action-btn.secondary:hover { background: var(--hover-bg); }
 
-/* Loader */
-.spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+/* TTS Studio Card */
+.tts-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tts-card h2 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    font-weight: 500;
+    font-family: var(--font-heading);
+    margin: 0;
+}
+
+.input-group textarea {
+    width: 100%;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1rem;
+    min-height: 100px;
+    transition: border-color 0.2s;
+}
+
+.input-group textarea:focus {
+    border-color: var(--primary);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls select {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-main);
+    padding: 0.6rem;
+}
+
+.action-btn {
+    background: var(--primary);
+    color: #fff; /* Always white on primary button */
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: var(--font-heading);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--primary-hover);
+}
+
+.action-btn.secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--card-border);
+}
+
+.action-btn.secondary:hover {
+    background: var(--hover-bg);
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-btn {
+        justify-content: center;
+    }
+}
