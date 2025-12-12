@@ -1,0 +1,9 @@
+# Targeted Python version: 3.10+
+Flask>=2.3.0
+gunicorn>=21.0.0
+# Free alternatives
+deep-translator>=1.11.0
+gTTS>=2.3.0
+langdetect>=1.0.9
+edge-tts
+pyttsx3
