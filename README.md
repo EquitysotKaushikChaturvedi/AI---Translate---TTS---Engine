@@ -5,6 +5,9 @@ This project is an enterprise-grade **Hybrid Translation & Text-to-Speech (TTS) 
 
 It is designed to be a **100% Free** alternative to paid APIs like Google Cloud, offering a robust "Google Translate" like experience that works even when the internet is unstable.
 
+## 🎥 Demo & Screenshots
+**[View Live Demo Recording & Screenshots (Google Drive)](https://drive.google.com/file/d/1VsOtLUWpCZuRv7-qUasSq9jc-eblLhDE/view?usp=sharing)**
+
 ### 🚀 Key Capabilities
 *   **Hybrid TTS Engine (Auto-Switching)**:
     *   **Online Mode (Primary)**: Streams **Neural Voices** (Human-like) from Microsoft Edge servers via `edge-tts`.
