@@ -93,5 +93,5 @@ flask-gcloud-translate-tts 2/
 ---
 
 ## 👨‍💻 Credits
-*   **Developed By**: Kausik
+*   **Developed By**: Kaushik
 *   **Powered By**: Microsoft Edge (Neural TTS) & Google Translate.
